@@ -15,8 +15,10 @@ from random import randint
 def left(i):
     return 2*i + 1
 
+
 def right(i):
     return 2*i + 2
+
 
 def swap(lst, i, j):
     lst[i], lst[j] = lst[j], lst[i]
@@ -58,6 +60,7 @@ def heapsort(lst):
         pop(lst, i + 1, swaps)
         
     return swaps[0]
+
 
 # Ввод данных
 lst = list(map(int, input("Введите элементы списка через пробел: ").split()))
