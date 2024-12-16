@@ -1,0 +1,11 @@
+name;age;address;weight
+0;Katherine Shaw;43;73911 Nichols Overpass Suite 363 Michelebury, ME 97222;76.05
+1;Madeline Patel;48;83613 Brian Way Allenside, MH 22014;95.36
+2;Jennifer Williams;27;5504 Jacob Rue Suite 600 Lake Blake, OK 50179;88.64
+3;Donald Gutierrez;27;20006 Austin Stream New Travis, NM 13101;42.86
+4;Erin Holt;45;3892 Palmer Prairie Apt. 011 Rosestad, PW 00988;80.94
+5;Elizabeth Ruiz;31;10812 Taylor Mill Apt. 349 West Sheena, IA 47821;75.21
+6;Allison Lara PhD;44;0953 Maldonado Villages Bensonstad, AS 67101;37.44
+7;Andrew Moody;22;7674 Taylor Island Suite 723 Jordanstad, AK 48179;30.13
+8;Sabrina Riley;44;5846 Beth Walk South Ebonyshire, WV 80758;35.3
+9;Clayton Dennis;26;7985 Kayla Stravenue Suite 362 Duranstad, GA 03329;49.06
