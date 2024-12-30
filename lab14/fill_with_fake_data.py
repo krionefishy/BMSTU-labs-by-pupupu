@@ -4,9 +4,8 @@ import struct
 
 
 def fill_data(filename: str, n: int):
-    with open(filename, "wb") as binary_file:      
+    with open(filename, "wb") as binary_file:   
         for i in range(n):
-            idx = i
             name = Faker().name().replace("\n", " ")
             age = randint(20,70)
             weight = randint(30,100) + random()

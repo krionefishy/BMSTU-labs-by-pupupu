@@ -2,7 +2,7 @@ from colorama import *
 import struct
 import os 
 import validators as v
-
+from fknpcofsht import shift_lines_down
 
 def menu():
     print(Fore.MAGENTA + "Выберите команду: \n \
@@ -107,6 +107,12 @@ def write_string(filename: str, string: str, n: int):
         return 1, "Неверное значние n"
     name, age, weight = string.split(";")
             
+    '''if n == 1:
+        string = struct.pack('32sif',name, age, weight)
+        shift_lines_down(filename, string)
+        exit_code = 0
+        return exit_code, Fore.GREEN + "Строка успешно записана"'''
+    
     if v.strValidator(name):
         name_encoded = name.encode("utf-8")
         name_encoded = name_encoded.ljust(32, b'\x00')[:32]
@@ -138,7 +144,7 @@ def write_string(filename: str, string: str, n: int):
         
         with open(filename, "ab") as file:
 
-            string = struct.pack('20sif', name_encoded, age, weight)
+            string = struct.pack('32sif', name_encoded, age, weight)
             file.write(string+b'\n')
        
         return exit_code, Fore.GREEN + "Строка успешно записана"
@@ -148,17 +154,17 @@ def write_string(filename: str, string: str, n: int):
         
         with open(filename, "r+b") as f:
             current_position = 0
-            while current_position < position:
+            while current_position <= position:
                 line = f.read(41)  
                 if not line:
                     break
                 
                 current_position += 41
-
+            
             start_shift_position = f.tell()
-
+            
             while line:
-
+                
                 next_line = f.read(41)
 
                 f.seek(start_shift_position)
@@ -170,12 +176,12 @@ def write_string(filename: str, string: str, n: int):
             f.seek(position)
         
         with open(filename, "r+b") as file:
+
             file.seek(position)
             string = struct.pack('32sif', name_encoded, age, weight)
-            file.write(string + b'\n')                
+            file.write(string + b'\n')
         
         return exit_code, Fore.GREEN + "Строка успешно записана"
-    
     
 def delete_current_line(filename: str, n: str):
     exit_code = 0
@@ -282,7 +288,7 @@ def find_by_two_and_show(filename: str, mw: str, ma: str):
 if __name__ == "__main__":
     #find_or_create_file("DB.bin")
     #delete_current_line("lab14/DB.bin", 5)
-    #write_string("lab14/DB.bin", "Cris;15;24.5", 7)
+    #write_string("lab14/DB.bin", "aaaaf;15;24.5", 1)
     #show_table("lab14/DB.bin")
     #find_by_one_and_show("lab14/DB.bin", 40)
     #find_by_two_and_show("lab14/DB.bin", 70, 30)

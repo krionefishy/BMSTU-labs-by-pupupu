@@ -58,7 +58,7 @@ while n != "8":
             
         case "4":
             string = input("Введите строку в формате name;age;weight: ")
-            n = input("Введите номер строки, в которую надо записать данные: ")
+            n = int(input("Введите номер строки, в которую надо записать данные: "))
             err, msg = functions.write_string(current_file, string, n)
             print(msg)
             
