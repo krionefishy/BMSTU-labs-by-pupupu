@@ -1,4 +1,4 @@
-def counter(sent, letter):
+'''def counter(sent, letter):
     letter = letter.lower()
     return len([i for i in sent.split() if i.lower().startswith(letter)])
 
@@ -57,4 +57,6 @@ text = ['Его тело тоже менялось. Он всегда ',
 rewrite_sentences(text, get_num_of_words(text, "о"))
 
 for i in text:
-    print(i)
+    print(i)'''
+    
+    
