@@ -5,13 +5,16 @@
 
 import tkinter as tk
 from funcs_and_culcs import *
-
+from tkinter import messagebox
 
 root = tk.Tk()
 root.title("Calculator")
 root.configure(bg="black")
 
-
+def show_info():
+    messagebox.showinfo("info pupupu")
+    
+    
 def create_button(nob: str, wob: int, hob: int, button_command):
     res = tk.Button(
                 root,
@@ -25,10 +28,12 @@ def create_button(nob: str, wob: int, hob: int, button_command):
     
 
 def clear_all_fields():
+    res.config(state=tk.NORMAL)
     num1_button.delete(0, tk.END)
     num2_button.delete(0, tk.END)
     operation_button.delete(0, tk.END)
     res.delete(0, tk.END)
+    res.config(state=tk.DISABLED)
 
 def add_char(char):
     act_button = root.focus_get()
@@ -54,6 +59,9 @@ def get_result():
     
     num1 = "0" if len(num1) == 0 or num1 == "-" or num1 == "+" else num1 
     num2 = "0" if len(num2) == 0 or num2 == "-" or num2 == "+" else num2 
+    
+    num1 = "0" + num1 if num1[0] == "." else num1 
+    num2 = "0" + num2 if num2[0] == "." else num2 
     if check_if_valid(num1, operation, num2):
         if operation == "-":
             result  = calc_minus(num1, num2)
@@ -61,26 +69,42 @@ def get_result():
             result = calc_plus(num1, num2)
     else:
         result = "Invalid operation"
-
+    res.config(state=tk.NORMAL)
     res.focus()
     res.delete(0, tk.END)
     res.insert(0, result)
-    
+    res.config(state=tk.DISABLED)
+
+menu_bar = tk.Menu(root)
+menu_bar.add_command(label="Info", command=show_info)
 
 
+clear_menu = tk.Menu(menu_bar, tearoff=0)
+clear_menu.add_command(label="Очистка текущего поля", command=clear_current_field)
+clear_menu.add_command(label="Очистка всех полей", command=clear_all_fields)
 
 
-num1_button = tk.Entry(root, width=13, font=("Courier", 10))
+menu_bar.add_cascade(label="Очистка", menu=clear_menu)
+
+
+root.config(menu=menu_bar)
+
+num1_button = tk.Entry(root, width=8, font=("Courier", 10))
 num1_button.grid(row=0, column=0, padx=5, pady=5, sticky="nsew")
 
-operation_button = tk.Entry(root, width=5, font=("Courier", 10))
+operation_button = tk.Entry(root, width=1, font=("Courier", 10))
 operation_button.grid(row=0, column=1, padx=5, pady=5, sticky="nsew")
 
-num2_button = tk.Entry(root, width=13, font=("Courier", 10))
+num2_button = tk.Entry(root, width=8, font=("Courier", 10))
 num2_button.grid(row=0, column=2, padx=5, pady=5, sticky="nsew")
 
-res = tk.Entry(root, width=13, font=("Courier", 10))
-res.grid(row = 0, column=3, padx=5, pady=5, sticky="nsew")
+
+equals_label = tk.Label(root, text="=", font=("Courier", 20), bg="black", fg="white")
+equals_label.grid(row=0, column=3, padx=0, pady=0, sticky="nsew")
+
+
+res = tk.Entry(root, width=8, font=("Courier", 10), state=tk.DISABLED)
+res.grid(row=0, column=4, padx=5, pady=5, sticky="nsew")
 
 keyboard_buttons = ["C", "A", "BK", "0", 
                     "1", "2", "3", "4",

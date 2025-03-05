@@ -114,4 +114,4 @@ def calc_plus(num1, num2):
     
 
 if __name__ == "__main__":
-    pass
+    print(check_if_valid("-5.0", "-", "-5.5"))
